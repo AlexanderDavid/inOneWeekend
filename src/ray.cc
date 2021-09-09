@@ -1,20 +1,20 @@
 #include <fmt/core.h>
 #include <fmt/ostream.h>
 #include <iostream>
+#include <limits>
 
+#include "Hittable.hh"
 #include "ray.hh"
 
 namespace ray
 {
 
-auto ray_color(const Ray& ray) -> color::Color
+auto ray_color(const Ray& ray, const hittable::Hittable& world) -> color::Color
 {
-    Eigen::Vector3d center{0, 0, -1};
-    auto hit = hit_sphere(center, 0.5, ray);
-    if (hit.has_value())
+    auto hitRecord = world.hit(ray);
+    if (hitRecord.didHit)
     {
-        auto norm = (ray.pointAt(hit.value()) - center).normalized();
-        return 0.5 * color::Color{norm.x() + 1, norm.y() + 1, norm.z() + 1};
+        return 0.5 * (hitRecord.norm + color::Color{1, 1, 1});
     }
 
     auto unit = ray.direction().normalized();

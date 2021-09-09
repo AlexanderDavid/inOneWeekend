@@ -7,6 +7,9 @@
 #include "Hittable.hh"
 #include "ray.hh"
 
+namespace hittable
+{
+
 class HittableList : public Hittable
 {
   public:
@@ -26,9 +29,15 @@ class HittableList : public Hittable
         objects_.push_back(object);
     }
 
-    [[nodiscard]] auto hit(const ray::Ray& r, double t_min, double t_max) const
+    [[nodiscard]] auto
+    hit(const ray::Ray& r, double t_min = 0,
+        double t_max = std::numeric_limits<double>::infinity()) const
         -> hitRecord override;
 
   private:
     std::vector<std::shared_ptr<Hittable>> objects_;
-}
+};
+
+} // namespace hittable
+
+#endif

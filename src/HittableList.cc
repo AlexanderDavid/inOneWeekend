@@ -1,5 +1,8 @@
 #include "HittableList.hh"
 
+namespace hittable
+{
+
 auto HittableList::hit(const ray::Ray& ray, double t_min, double t_max) const
     -> hitRecord
 {
@@ -19,3 +22,5 @@ auto HittableList::hit(const ray::Ray& ray, double t_min, double t_max) const
 
     return closest;
 }
+
+} // namespace hittable

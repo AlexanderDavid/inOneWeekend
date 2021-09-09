@@ -5,9 +5,11 @@
 #include <Eigen/Geometry>
 #include <optional>
 
+#include "Hittable.hh"
 #include "color.hh"
 
-namespace ray {
+namespace ray
+{
 
 using Ray = Eigen::ParametrizedLine<double, 3>;
 
@@ -17,7 +19,7 @@ using Ray = Eigen::ParametrizedLine<double, 3>;
  * @param ray Ray to calculate color of
  * @returns Color of the ray
  */
-auto ray_color(const Ray& ray) -> color::Color;
+auto ray_color(const Ray& ray, const hittable::Hittable& world) -> color::Color;
 
 /**
  * @brief Determine if given ray intersects with given sphere

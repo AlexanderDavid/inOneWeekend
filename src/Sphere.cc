@@ -1,4 +1,4 @@
-#include "Hittable.hh"
+#include "Sphere.hh"
 
 namespace hittable
 {

@@ -6,10 +6,11 @@ add_library(inOneWeekend_lib
     "../include/ray.hh"
     "../include/Hittable.hh"
     "../include/HittableList.hh"
+    "../include/Sphere.hh"
     color.cc
     ray.cc
-    Hittable.cc
-    HittableList.cc)
+    HittableList.cc
+    Sphere.cc)
 add_library(inOneWeekend::lib ALIAS inOneWeekend_lib)
 target_link_libraries(inOneWeekend_lib PUBLIC
   cmake_cpp_boilerplate::compiler_options

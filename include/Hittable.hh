@@ -5,7 +5,8 @@
 
 #include "ray.hh"
 
-namespace hittable {
+namespace hittable
+{
 
 struct hitRecord
 {
@@ -26,31 +27,14 @@ struct hitRecord
 class Hittable
 {
   public:
-    virtual ~Hittable() = 0;
+    virtual ~Hittable();
 
-    [[nodiscard]] virtual auto hit(const ray::Ray& r, double t_min,
-                                   double t_max) const -> hitRecord = 0;
+    [[nodiscard]] virtual auto
+    hit(const ray::Ray& r, double t_min = 0,
+        double t_max = std::numeric_limits<double>::infinity()) const
+        -> hitRecord = 0;
 };
 
-class Sphere : public Hittable
-{
-  public:
-    Sphere() = default;
-
-    Sphere(Eigen::Vector3d center, double radius)
-    {
-        center_ = std::move(center);
-        radius_ = radius;
-    }
-
-    [[nodiscard]] auto hit(const ray::Ray& r, double t_min, double t_max) const
-        -> hitRecord override;
-
-  private:
-    Eigen::Vector3d center_{0, 0, 0};
-    double radius_{1};
-};
-    
-}
+} // namespace hittable
 
 #endif // HITTABLE_HH
